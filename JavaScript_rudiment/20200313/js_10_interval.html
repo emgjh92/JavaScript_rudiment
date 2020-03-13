@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+ <style>
+     #box1{
+         width: 200px;
+         height: 200px;
+         background-color: red;
+     }
+ </style>
+ <script>
+//----------------------------------------------------------------------------------------------------------------------------
+//일정 시간 마다 "주기적으로" 호출하기
+        var sizeX=200;
+        function incFunc(){
+            
+            if(sizeX >= 500){
+                clearInterval(incHandler);
+                incHandler = null;
+            }   
+            
+            var box1 = document.getElementById("box1");
+
+            sizeX += 2; //2px 씩 증가
+            box1.style.width = sizeX+"px";
+
+        }
+        var incHandler = null;
+        function increase(){
+
+            if(desHandler!=null){
+                clearInterval(desHandler);
+                desHandler=null;
+             }//incHandler,desHandler동시호출 방지
+
+            if(incHandler != null){
+
+                return; //setInterval 이 중복되지 않게 처리
+            }
+            incHandler = setInterval(incFunc, 1000/60); 
+            //1000ms 마다 (1초마다) 이 함수를 주기적으로 호출 (언제까지? clear Interval 할때 까지)
+        }
+        //$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+         function decFunc(){
+            if(sizeX <= 200){
+                clearInterval(desHandler);
+                desHandler = null;
+                return;
+            }   
+            
+            var box1 = document.getElementById("box1");
+
+            sizeX -= 2; //2px 씩 감소
+            box1.style.width = sizeX+"px";
+        }
+         var desHandler = null;
+         function decrease(){
+             if(incHandler!=null){
+                clearInterval(incHandler);
+                incHandler=null;
+             }//incHandler,desHandler동시호출 방지
+             if(desHandler != null){
+                 return;//setInterval 이 중복되지 않게 처리
+             }
+            desHandler = setInterval(decFunc,1000/60);
+
+         }
+//----------------------------------------------------------------------------------------------------------------------------
+</script>
+</head>
+<body>
+    <div onmouseout="decrease()" onmouseover="increase()" id="box1"></div>
+</body>
+</html>

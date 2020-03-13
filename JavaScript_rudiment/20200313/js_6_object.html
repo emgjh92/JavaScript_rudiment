@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script>
+//----------------------------------------------------------------------------------------------------------------------------
+        //객체.......
+        var student1 = {}; //비어있는 객체 생성
+        
+        //JSON (javascript 용 오브젝트 선언 법 [JavaScript Object Notation])
+        //이런 유형을 object type이라고 하며, json에 사용된다.
+        var student2 = {
+            name : "한조",
+            score : 70,
+            number : 10,
+            test : function(){
+                console.log("학생 메소드 호출");
+            }
+        };
+
+        console.log(typeof student2); //결과값 : object (object type)
+
+        console.log(student2.name); //결과값 : 한조
+        console.log(student2.number); //결과값 : 10
+        console.log(student2.score); //결과값 : 70
+        student2.test(); //결과값 : 학생 메소드 호출
+
+        student2.name = "트레이서";
+        console.log(student2.name); //결과값 : 트레이서
+
+        student2.aaa = "안녕하세요"; //aaa 추가
+        console.log(student2.aaa); //결과값 : 안녕하세요 
+
+//----------------------------------------------------------------------------------------------------------------------------
+       
+        //객체......딕셔너리, Map...컬렉션...형태의 사용.....
+        var dic = {
+            "a" : 10,
+            "b" : 20,
+            "c" : "안녕하세요"
+        };
+
+        console.log(dic.a); //결과값 : 10 --> 자동으로 파싱해 준다.
+        console.log(dic["a"]); //결과값 : 10
+        console.log(dic["b"]); //결과값 : 20
+
+//----------------------------------------------------------------------------------------------------------------------------
+        //....함수로 객체 만든다....
+        function Student(){
+            console.log("Student 호출 됨.....")
+            var a = 10; //지역변수 ==> 이 지역을 떠날 때 소멸된다.
+           
+            b = 20; //맴버...추가.... ==> 메모리 생성 자체가 실행의 주체(window)에 된다.
+            //즉 "맴버변수로서" 들어갔다가, "맴버변수로서" 소멸된다
+
+            this.c = 30; //this 맴버 추가...
+        }
+
+        //Student(); //결과값 : Student 호출 됨.....[window가 주체] (이런식으로 호출하면 안된다.)
+        //new Student(); //결과값 : Student 호출 됨.....[새로 생성한 인스턴스가 주체]
+            //함수에다가 new를 붙일 수 있다. (new = 인스턴스 생성 명령어)
+        
+        var s1 = new Student();
+
+        var z = 20;
+        
+        var cc = 40; //var 이 붙으면 지역변수를 선언하는 방식
+        dd = 50; //var이 안붙으면 맴버변수를 선언하는 방식
+
+        console.log(z);         //결과값 : 20
+        console.log(window.z);  //결과값 : 20
+        console.log(this.z);    //결과값 : 20
+
+//----------------------------------------------------------------------------------------------------------------------------
+        //객체 생성 예제
+        function PhoneData(name,number,birth){
+            this.name = name;
+            this.number = number;
+            this.birth = birth;
+            this.test = function(){
+                console.log(this.name + this.number + this.birth);
+            }
+        }
+
+        var p1 = new PhoneData("한조","111","000");
+        var p2 = new PhoneData("트레이서","222","333");
+
+        console.log(p1.name); // 결과값 : 한조
+        console.log(p2.name); // 결과값 : 트레이서
+        p1.test(); //결과값 : 한조111000
+        p2.test(); //결과값 : 트레이서222333
+//----------------------------------------------------------------------------------------------------------------------------
+
+   </script>
+</head>
+<body>
+    
+</body>
+</html>
