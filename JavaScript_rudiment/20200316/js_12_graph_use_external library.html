@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        #box1{
+            width:500px;
+            height:500px;
+            border:2px solid black;
+            float:left;
+        }
+        #box2{
+            width:500px;
+            height:500px;
+            border:2px solid black;
+            float:left;
+        }
+    </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
+    </script>
+
+
+
+<script type="text/javascript">
+//https://developers.google.com/chart/interactive/docs/gallery
+//(구글 차트 라이브러리)
+//https://developers.google.com/chart/interactive/docs/gallery/piechart
+//===> Pie Chart
+google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['성별', '회원 수'],
+          ['남자',     150],
+          ['여자',      70]
+        ]);
+
+        var options = {
+          title: '회원 성별 비율'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('box1'));
+
+        chart.draw(data, options);
+      }
+</script>
+
+
+<script type="text/javascript">
+//Line Chart
+//https://developers.google.com/chart/interactive/docs/gallery/linechart
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart2);
+
+    function drawChart2() {
+      var data = google.visualization.arrayToDataTable([
+        ['Year', 'Sales', 'Expenses'],
+        ['2004',  1000,      400],
+        ['2005',  1170,      460],
+        ['2006',  660,       1120],
+        ['2007',  1030,      540]
+      ]);
+
+      var options = {
+        title: 'Company Performance',
+        curveType: 'function',
+        legend: { position: 'bottom' }
+      };
+
+      var chart = new google.visualization.LineChart(document.getElementById('box2'));
+
+      chart.draw(data, options);
+    }
+  </script>
+
+</head>
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+
+
+    
+</body>
+</html>

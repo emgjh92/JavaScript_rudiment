@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+      .aaaa{font-size: 70px;}
+      .bbbb{background-color: purple;}
+      .cccc{border:green;}
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        /*
+        function test(){
+            alert("안녕하세요");
+        }
+        var tt = $(document); //jqury
+        tt.ready(test); //.ready() ==> 매개변수로 함수를 넣을 수 있다.
+        //위의 tt.ready 의 경우 alert 가 뜨고 나서 body가 뜨지만 test(); 의 경우 alert 보다 먼저 body가 호출된다
+        //alert 확인 버튼 클릭전에 문서가 노출 된다는 것은 위험할 수 도 있다.
+      //test();
+      */
+
+
+
+/*
+      $(document).ready(
+          function(){
+            alert("안녕하세요");
+          } //문서 로드 후 (그림까지 그린 후) function 의 alert 호출 
+      );
+*/
+
+      //요즘엔 아래 처럼도 많이 쓴다.
+      $(function(){
+        alert("안녕하세요"); //문서가 로드 되고 그림까지 그리고, 호출 되는 곳
+      })
+
+      $(function(){
+       // $("h1").css("color","red");
+       // $("h1").css("font-size","30px");
+        $("h1").css("color","red").css("font-size","30px"); //css 속성을 여러개 연결해서 쓰는게 가능하다.
+
+       // $("#box1").css("color","blue"); //(jqury 로 짠 코드)
+       document.getElementById("box1").style.color="blue";//javascript(VanillaJs)로 짠 코드
+       /*
+       "VanillaJs"란 ? 
+        자바스크립트의 수 많은 프레임웍, 라이브러리를 사용하지 않고 순수하게 javascript만 사용하는것을 일컫는다.
+       */
+/*
+        //클래스 선택 jqury
+        $(".c_box").css("color","red");
+        $(".c_box").css("font-size","30px");
+
+        //클래스 선택 VanillaJs
+        var boxlist = document.getElementsByClassName("c_box");
+        for(box of boxlist){
+          box.style.color = "red";
+          box.style.fontSize="30px";
+        }
+*/
+       /*
+       Jqury가 저무는 추세인 이유 : 
+       생산성 면에선 jqury가 좋지만, 퍼포먼스가 javascript 순수 코드 쪽이 더 좋으므로
+       & javascript 의 문법 변화로 인해 jqury 가 할 수 있는걸 거의 다 할수 있게 되서
+       */
+/*
+       document.querySelector("#box1").style.color = "yellow";
+       documnet.querySelectorAll(".c_box")[0].style.color = "pink";
+*/
+       //-----------Jqury Selector----------------
+       $("#u1 li").css("color","red");
+
+
+       //-----동적으로 함수 이벤트 연결--------------
+      /*
+      $("#btn3").on("click",function(){
+        
+      });
+      */
+
+      document.getElementById("btn3").onclick=addLI;
+
+      });
+
+      
+
+
+
+
+      //-----------------Jqury---------------------
+      function addLI(){
+       // $("<li></li>").html("추가된거").appendTo("#u1");
+       // $("<li>추가된거</li>").appendTo("#u1");
+        $("<li>추가된거</li>").html("1111").appendTo("#u1"); //1111로만 바뀜
+      }
+
+      //----------------VanillaJs-------------------
+      /*
+      function addLI(){
+      var li = document.createElement("li");
+      li.innerHTML = "추가된거";
+      document.getElementById("u1").appendChild(li);
+      }
+      */
+      
+      function changeContent(){
+     // $("#l1").html("<h1>바뀐내용<h1>");
+     // $("#l1").text("<h1>바뀐내용<h1>");
+      /*.html() 과 .text()의 차이 : .html()은 안에 코드 (테그)를 넣을 수 있다.*/ 
+      
+    //  document.getElementById("l1").innerHTML = "<h1>바뀐내용<h1>";
+        document.getElementById("l1").innerText = "<h1>바뀐내용<h1>";
+
+      }
+
+      function addClassAttr(){ //클래스 속성 추가
+        $("#box1").addClass("aaaa");
+        $("#box1").addClass("bbbb");
+        $("#box1").addClass("cccc");
+      }
+
+      function removeClassAttr(){ //클래스 속성 제거
+        $("#box1").removeClass("bbbb");
+      }
+
+      function addAttr(){ //일반속성 추가 (setter)
+        $("#box1").attr("qqqqq","vvvvv");
+
+      }
+
+      function getAttr(){ //일반속성 (getter)
+        var value = $("#box1").attr("qqqqq");
+        alert(value);
+      }
+
+      function testText(){
+       // $("box1").text("abcdefg"); //setter (텍스트 조작)
+       var value = $("#box1").text();//getter (속성 값 받아오기)
+       alert(value);
+      }
+
+      function removeAttr(){ //일반 속성 제거
+        $("#box1").removeAttr("qqqqq");
+      }
+
+      function getCssValue(){ //CSS 칼라 값 가져오기
+       // $("#box1").css("color","red"); //setter 로 이용
+       var value = $("#box1").css("color"); //getter 로 이용
+        alert(value);
+      }
+
+      function removeElement(){ //객체 제거
+        $("#box1").remove();
+
+      }
+
+      function emptyContent(){ //내부 제거
+        $("#box1").empty();
+      }
+
+      function addElement(){
+        //$("<li>추가된 객체</li>").appendTo("#u2"); //객체 추가 (아래에)
+       // $("<li>추가된 객체</li>").prependTo("#u2"); //객체추가 (위에)
+       $("<li>추가된 객체</li>").insertAfter("#l2"); //객체추가 (선택된거의 뒤에)
+       $("<li>추가된 객체</li>").insertBefore("#l2"); //객체추가 (선택된거의 앞에)
+
+      }
+    </script>
+
+</head>
+<body>
+    <div id="box1">안녕하세요</div>
+
+    <h1>Hello</h1>
+
+    <div class="c_box">반갑습니다</div>
+    <div class="c_box">반갑습니다</div>
+    <div class="c_box">반갑습니다</div>
+    <div class="c_box">반갑습니다</div>
+    <div class="c_box">반갑습니다</div>
+
+    <ul id="u1">
+      <li>HI!!!!</li>
+      <li>HI!!!!</li>
+      <li>HI!!!!</li>
+      <li>HI!!!!</li>
+      <li>HI!!!!</li>
+    </ul>
+
+    <ul id="u2">
+      <li>HI22!!!!</li>
+      <li id="l2">HI22!!!!</li>
+      <li id = "l1">HI22!!!!</li>
+      <li>HI22!!!!</li>
+      <li>HI22!!!!</li>
+    </ul>
+
+    <div id="btn1" onclick="addLI()"> 버튼 </div>
+    <div id="btn2" onclick="changeContent()"> 내용바꾸기 </div>
+    <div id="btn3">Button</div>
+    <div onclick="addClassAttr()">클래스 속성 추가</div>
+    <div onclick="removeClassAttr()">클래스 속성 제거</div>
+    <div onclick="addAttr()">일반 속성 추가</div>
+    <div onclick="getAttr()">속성 값 가져오기</div>
+    <div onclick="testText()">내부 텍스트 조작</div>
+    <div onclick="removeAttr()">일반 속성 제거</div>
+    <div onclick="getCssValue()">CSS 칼라 값 가져오기</div>
+    <div onclick="removeElement()">객체 제거</div>
+    <div onclick="emptyContent()">내부 제거</div>
+    <div onclick="addElement()">객체 추가</div>
+</body>
+</html>

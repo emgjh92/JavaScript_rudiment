@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">//jqury CDN 링크</script>
+    <style>
+        #box1{
+            width: 200px;
+            height: 200px;
+            background-color: chocolate;
+        }
+    </style>
+<script>
+$(function(){
+    $("#btn1").on("click",function(){
+        $("#box1").toggle(500); //toggle 기능 : style="display: none;" 으로 가렸다가 다시 보였다가....
+    });
+});
+
+function show(){
+    $("#box1").show(1000); //안의 숫자는 기능 구현의 속도
+}
+
+function hide(){
+    $("#box1").hide(1000); //안의 숫자는 기능 구현의 속도
+}
+
+function slideDown(){
+    $("#box1").slideDown(500);
+}
+function slideUp(){
+    $("#box1").slideUp(500);
+}
+function slideToggle(){
+    $("#box1").slideToggle(500);
+}
+function fadeToggle(){
+    $("#box1").fadeToggle(500);
+}
+</script>
+
+</head>
+<body>
+<div id="box1"></div>
+<input id="btn1" type="button" value="toggle_test">
+<input onclick="show()" type="button" value="보이기">
+<input onclick="hide()" type="button" value="숨기기">
+<input onclick="slideUp()" type="button" value="스륵 올리기">
+<input onclick="slideDown()" type="button" value="스륵 내리기">
+<input onclick="slideToggle()" type="button" value="스륵 toggle">
+<input onclick="fadeToggle()" type="button" value="페이드 toggle">
+
+</body>
+</html>
